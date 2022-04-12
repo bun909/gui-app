@@ -8,7 +8,7 @@ from PIL import ImageTk, Image
 from gender_prediction import emotion, ageAndgender
 names = set()
 
-
+#Khởi Tạo quá trình
 class MainUI(tk.Tk):
 
     def __init__(self, *args, **kwargs):
@@ -50,7 +50,7 @@ class MainUI(tk.Tk):
                     f.write(i+" ")
             self.destroy()
 
-
+# Pgae Khởi Tạo Trang Chủ:Gồm chức năng Thêm Người Dùng+ Kiểm Tra người Dùng +Thoát Chương Trình
 class StartPage(tk.Frame):
 
         def __init__(self, parent, controller):
@@ -80,7 +80,12 @@ class StartPage(tk.Frame):
                         f.write(i + " ")
                 self.controller.destroy()
 
-
+#Page 1: Gồm chức năng Nhập tên Người Dùng 
+    # {
+    # Nếu Trùng Tên Thì In ra Đã Tồn Tại Người Dùng
+    # Không Nhập Tên In ra Tên Không Được Trống
+    # Nhập Tên Khác Tên Cũ/Hoặc Tên Mới sẽ được thông qua đến bước tiếp theo
+    # }
 class PageOne(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -109,7 +114,12 @@ class PageOne(tk.Frame):
         self.controller.frames["PageTwo"].refresh_names()
         self.controller.show_frame("PageThree")
 
-
+#Page 2:Kiểm Tra Người Dùng
+    # {
+    # Chọn Mục "Chọn Người Dùng" rồi chọn tên ta cần xác định
+    # Nếu Tên Không Tồn Tại Trong Hệ Thống Hoặc Khởi Tạo ảo
+    # Thì sẽ báo tên không yoonf tại
+    # }
 class PageTwo(tk.Frame):
 
     def __init__(self, parent, controller):
@@ -129,7 +139,7 @@ class PageTwo(tk.Frame):
 
     def nextfoo(self):
         if self.menuvar.get() == "None":
-            messagebox.showerror("ERROR", "Name cannot be 'None'")
+            messagebox.showerror("Loi", "Name cannot be 'None'")
             return
         self.controller.active_name = self.menuvar.get()
         self.controller.show_frame("PageFour")
@@ -141,6 +151,8 @@ class PageTwo(tk.Frame):
         for name in names:
             self.dropdown['menu'].add_command(label=name, command=tk._setit(self.menuvar, name))
 
+#Page 3:Sau Khi mở page 1 thì sẽ ra 1 bõ như thế này chức năng bõ này là chụp ảnh để chuẩn bị
+#       dữ liệu và đào tạo dữ liệu từ ảnh thu được
 class PageThree(tk.Frame):
 
     def __init__(self, parent, controller):
@@ -170,7 +182,12 @@ class PageThree(tk.Frame):
         messagebox.showinfo("Thanh Cong", "He thong da duoc dao tao thanh cong!")
         self.controller.show_frame("PageFour")
 
-
+#Page 4:Kiem tra tính năng tích hợp
+#Gồm 4 tính năng:
+#Nhận Diện Khuôn Mặt
+#Nhận Dạng Cảm Xúc (Đang Phát Triển)
+#Nhận Dạng Tuổi Tác
+#Nhận Dạng Giới Tính
 class PageFour(tk.Frame):
 
     def __init__(self, parent, controller):
@@ -200,4 +217,3 @@ class PageFour(tk.Frame):
 app = MainUI()
 app.iconphoto(False, tk.PhotoImage(file='icon.ico'))
 app.mainloop()
-
