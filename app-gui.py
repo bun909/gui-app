@@ -118,7 +118,7 @@ class PageOne(tk.Frame):
     # {
     # Chọn Mục "Chọn Người Dùng" rồi chọn tên ta cần xác định
     # Nếu Tên Không Tồn Tại Trong Hệ Thống Hoặc Khởi Tạo ảo
-    # Thì sẽ báo tên không yoonf tại
+    # Thì sẽ báo tên không tồn tại
     # }
 class PageTwo(tk.Frame):
 
